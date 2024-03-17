@@ -3,7 +3,6 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, accuracy_score, f1_score, confusion_matrix, precision_score, recall_score
-from statsmodels.tools.eval_measures import rmspe
 import timeit
 import psutil
 import json
@@ -53,6 +52,12 @@ def class_to_json(f1_cost_index, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f
         "R2" : 0
     }
     return json.dumps(output, indent=4)
+
+def rmspeFucntion(rmse, y_test):
+  if np.mean(y_test) == 0:
+    return np.nan
+  else:
+    return (rmse / np.mean(y_test)) * 100
 
 def getLogReg(weight_external, weight_performance):
     #Importing Dataset
@@ -168,7 +173,7 @@ def getLinReg(weight_external, weight_performance):
     mae = mean_absolute_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
     rmse = np.sqrt(mse)
-    rmspe = rmspe(y_test, y_pred)
+    rmspe = rmspeFucntion(rmse, y_test)
 
     max_time = 0.024
     min_time = 0.008
