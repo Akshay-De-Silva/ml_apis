@@ -3,6 +3,7 @@ from flask_cors import CORS
 import ml
 
 app = Flask(__name__)
+app.config['DEBUG'] = False
 CORS(app)
 
 @app.route('/getLogReg', methods=['POST'])
