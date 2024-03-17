@@ -30,7 +30,7 @@ def reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, 
     }
     return json.dumps(output, indent=4)
 
-def class_to_json(f1_cost_index, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall):
+def class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall):
     output = {
         "BATI": round(bati,2),
         "RAF1_CPU" : round(raf1_cpu,2),
