@@ -110,8 +110,8 @@ def getLogReg(weight_external, weight_performance):
     max_ram = 230
     min_ram = 192
 
-    max_acc = 0.9
-    min_acc = 0.81
+    max_acc = 0.88
+    min_acc = 0.82
     max_f1 =0.91
     min_f1 = 0.82
 
@@ -256,8 +256,8 @@ def getKnn(weight_external, weight_performance):
     max_ram = 230
     min_ram = 192
 
-    max_acc = 0.9
-    min_acc = 0.81
+    max_acc = 0.88
+    min_acc = 0.82
     max_f1 =0.91
     min_f1 = 0.82
 
@@ -334,8 +334,8 @@ def getDt(weight_external, weight_performance):
     max_ram = 230
     min_ram = 192
 
-    max_acc = 0.9
-    min_acc = 0.81
+    max_acc = 0.88
+    min_acc = 0.82
     max_f1 =0.91
     min_f1 = 0.82
 
@@ -412,8 +412,8 @@ def getRf(weight_external, weight_performance):
     max_ram = 230
     min_ram = 192
 
-    max_acc = 0.9
-    min_acc = 0.81
+    max_acc = 0.88
+    min_acc = 0.82
     max_f1 =0.91
     min_f1 = 0.82
 
@@ -490,8 +490,8 @@ def getNb(weight_external, weight_performance):
     max_ram = 230
     min_ram = 192
 
-    max_acc = 0.9
-    min_acc = 0.81
+    max_acc = 0.88
+    min_acc = 0.82
     max_f1 =0.91
     min_f1 = 0.82
 
@@ -568,8 +568,8 @@ def getSvm(weight_external, weight_performance):
     max_ram = 230
     min_ram = 192
 
-    max_acc = 0.9
-    min_acc = 0.81
+    max_acc = 0.88
+    min_acc = 0.82
     max_f1 =0.91
     min_f1 = 0.82
 
