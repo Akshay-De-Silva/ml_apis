@@ -516,3 +516,81 @@ def getNb(weight_external, weight_performance):
 
     output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall)
     return output
+
+def getSvm(weight_external, weight_performance):
+    #Importing Dataset
+    classDataset = "https://raw.githubusercontent.com/Akshay-De-Silva/ml_apis/main/heart.csv"
+    dataset = pd.read_csv(classDataset)
+
+    #relabel values in columns to be numeric
+    label_encoder = LabelEncoder()
+    dataset['Sex'] = label_encoder.fit_transform(dataset['Sex'])
+    dataset['ChestPainType'] = label_encoder.fit_transform(dataset['ChestPainType'])
+    dataset['RestingECG'] = label_encoder.fit_transform(dataset['RestingECG'])
+    dataset['ExerciseAngina'] = label_encoder.fit_transform(dataset['ExerciseAngina'])
+    dataset['ST_Slope'] = label_encoder.fit_transform(dataset['ST_Slope'])
+
+    X=dataset[['Age', 'Sex', 'ChestPainType', 'RestingBP', 'Cholesterol',
+            'FastingBS', 'RestingECG', 'MaxHR', 'ExerciseAngina', 'Oldpeak', 'ST_Slope']].values
+    y=dataset[['HeartDisease']].values
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    y_train = y_train.ravel()
+    y_test = y_test.ravel()
+
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
+
+    # Svm
+    from sklearn.svm import SVC
+    svm = SVC()
+
+    training_time = timeit.timeit(lambda: svm.fit(X_train, y_train), number=1)
+    testing_time = timeit.timeit(lambda: svm.predict(X_test), number=1)
+
+    ram_usage_bytes = psutil.virtual_memory().used
+    ram_usage = ram_usage_bytes / (1024 ** 2)
+
+    y_pred = svm.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    f1Score = f1_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred)
+    recall = recall_score(y_test, y_pred)
+
+    max_time = 3
+    min_time = 0.005
+    max_gpu = 2000
+    min_gpu = 1000
+    max_cpu = 30
+    min_cpu = 15
+    max_ram = 2000
+    min_ram = 1000
+
+    max_acc = 0.97
+    min_acc = 0.75
+    max_f1 =0.95
+    min_f1 = 0.7
+
+    gpu_usage = 1100
+    cpu_usage = 18
+
+    tp_cost = 1/13
+    tn_cost = 1/13
+    fp_cost = 4/13
+    fn_cost = 7/13
+
+    conf_matrix = confusion_matrix(y_test, y_pred)
+    tp, fp, fn, tn = conf_matrix.ravel()
+    f1ci = (2*tp_cost*tp)/(2*tp_cost*tp + fp_cost*fp + fn_cost*fn)
+
+    bati = (weight_performance * ((accuracy - min_acc) / (max_acc - min_acc))) \
+            + (weight_external * (1 - ((training_time - min_time) / (max_time - min_time))))
+            
+    raf1_cpu = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((cpu_usage-min_cpu)/(max_cpu-min_cpu)))))
+    raf1_gpu = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
+    raf1_ram = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
+
+    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall)
+    return output

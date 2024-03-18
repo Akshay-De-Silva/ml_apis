@@ -66,5 +66,15 @@ def getNb():
 
     return jsonify(results)
 
+@app.route('/getSvm', methods=['POST'])
+def getSvm():
+    data = request.get_json()
+    weight_e = data.get('weight_e')
+    weight_p = data.get('weight_p')
+
+    results = ml.getSvm(weight_e, weight_p)
+
+    return jsonify(results)
+
 if __name__ == '__main__':
     app.run(debug=True)
