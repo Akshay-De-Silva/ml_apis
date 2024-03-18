@@ -101,7 +101,7 @@ def getLogReg(weight_external, weight_performance):
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
 
-    max_time = 0.21
+    max_time = 0.24
     min_time = 0.0009
     max_gpu = 2000
     min_gpu = 1000
@@ -247,7 +247,7 @@ def getKnn(weight_external, weight_performance):
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
 
-    max_time = 0.21
+    max_time = 0.24
     min_time = 0.0009
     max_gpu = 2000
     min_gpu = 1000
@@ -325,7 +325,7 @@ def getDt(weight_external, weight_performance):
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
 
-    max_time = 0.21
+    max_time = 0.24
     min_time = 0.0009
     max_gpu = 2000
     min_gpu = 1000
@@ -403,7 +403,7 @@ def getRf(weight_external, weight_performance):
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
 
-    max_time = 0.21
+    max_time = 0.24
     min_time = 0.0009
     max_gpu = 2000
     min_gpu = 1000
@@ -481,7 +481,7 @@ def getNb(weight_external, weight_performance):
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
 
-    max_time = 0.21
+    max_time = 0.24
     min_time = 0.0009
     max_gpu = 2000
     min_gpu = 1000
@@ -559,7 +559,7 @@ def getSvm(weight_external, weight_performance):
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
 
-    max_time = 0.21
+    max_time = 0.24
     min_time = 0.0009
     max_gpu = 2000
     min_gpu = 1000
