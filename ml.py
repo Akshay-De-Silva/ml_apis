@@ -180,7 +180,7 @@ def getLinReg(weight_external, weight_performance):
     min_gpu = 1000
     max_cpu = 30
     min_cpu = 15
-    max_ram = 277
+    max_ram = 285
     min_ram = 255
 
     max_rmse = 5.15
@@ -638,7 +638,7 @@ def getRr(weight_external, weight_performance):
     min_gpu = 1000
     max_cpu = 30
     min_cpu = 15
-    max_ram = 277
+    max_ram = 285
     min_ram = 255
 
     max_rmse = 5.15
@@ -706,7 +706,7 @@ def getLasso(weight_external, weight_performance):
     min_gpu = 1000
     max_cpu = 30
     min_cpu = 15
-    max_ram = 277
+    max_ram = 285
     min_ram = 255
 
     max_rmse = 5.15
@@ -774,7 +774,7 @@ def getBrr(weight_external, weight_performance):
     min_gpu = 1000
     max_cpu = 30
     min_cpu = 15
-    max_ram = 277
+    max_ram = 285
     min_ram = 255
 
     max_rmse = 5.15
@@ -842,7 +842,7 @@ def getEn(weight_external, weight_performance):
     min_gpu = 1000
     max_cpu = 30
     min_cpu = 15
-    max_ram = 277
+    max_ram = 285
     min_ram = 255
 
     max_rmse = 5.15
