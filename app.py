@@ -106,5 +106,15 @@ def getBrr():
 
     return jsonify(results)
 
+@app.route('/getEn', methods=['POST'])
+def getEn():
+    data = request.get_json()
+    weight_e = data.get('weight_e')
+    weight_p = data.get('weight_p')
+
+    results = ml.getEn(weight_e, weight_p)
+
+    return jsonify(results)
+
 if __name__ == '__main__':
     app.run(debug=True)
