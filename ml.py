@@ -107,7 +107,7 @@ def getLogReg(weight_external, weight_performance):
     min_gpu = 1000
     max_cpu = 30
     min_cpu = 15
-    max_ram = 200
+    max_ram = 230
     min_ram = 192
 
     max_acc = 0.9
@@ -253,7 +253,7 @@ def getKnn(weight_external, weight_performance):
     min_gpu = 1000
     max_cpu = 30
     min_cpu = 15
-    max_ram = 200
+    max_ram = 230
     min_ram = 192
 
     max_acc = 0.9
@@ -331,7 +331,7 @@ def getDt(weight_external, weight_performance):
     min_gpu = 1000
     max_cpu = 30
     min_cpu = 15
-    max_ram = 200
+    max_ram = 230
     min_ram = 192
 
     max_acc = 0.9
@@ -409,7 +409,7 @@ def getRf(weight_external, weight_performance):
     min_gpu = 1000
     max_cpu = 30
     min_cpu = 15
-    max_ram = 200
+    max_ram = 230
     min_ram = 192
 
     max_acc = 0.9
@@ -487,7 +487,7 @@ def getNb(weight_external, weight_performance):
     min_gpu = 1000
     max_cpu = 30
     min_cpu = 15
-    max_ram = 200
+    max_ram = 230
     min_ram = 192
 
     max_acc = 0.9
@@ -565,7 +565,7 @@ def getSvm(weight_external, weight_performance):
     min_gpu = 1000
     max_cpu = 30
     min_cpu = 15
-    max_ram = 200
+    max_ram = 230
     min_ram = 192
 
     max_acc = 0.9
