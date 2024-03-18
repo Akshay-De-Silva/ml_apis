@@ -730,3 +730,71 @@ def getLasso(weight_external, weight_performance):
 
     output = reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2)
     return output
+
+def getBrr(weight_external, weight_performance):
+    #Importing Dataset
+    reg_dataset = 'https://raw.githubusercontent.com/Akshay-De-Silva/ml_apis/main/bitcoin.csv'
+    dataset=pd.read_csv(reg_dataset)
+
+    dataset = dataset.dropna()
+
+    X = dataset[['Open', 'High', 'Low', 'Close', 'Volume_(BTC)', 'Volume_(Currency)']]
+    y = dataset[['Weighted_Price']]
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+
+    y_train = np.ravel(y_train)
+    y_test = np.ravel(y_test)
+
+    # Bayesian Ridge Regression
+    from sklearn.linear_model import BayesianRidge
+    brr = BayesianRidge()
+
+    training_time = timeit.timeit(lambda: brr.fit(X_train_scaled, y_train), number=1)
+    testing_time = timeit.timeit(lambda: brr.predict(X_test_scaled), number=1)
+
+    ram_usage_bytes = psutil.virtual_memory().used
+    ram_usage = ram_usage_bytes / (1024 ** 2)
+
+    y_pred = brr.predict(X_test_scaled)
+
+    mse = mean_squared_error(y_test, y_pred)
+    mae = mean_absolute_error(y_test, y_pred)
+    r2 = r2_score(y_test, y_pred)
+    rmse = np.sqrt(mse)
+    rmspe = rmspeFucntion(rmse, y_test)
+
+    max_time = 0.024
+    min_time = 0.008
+    max_gpu = 2000
+    min_gpu = 1000
+    max_cpu = 30
+    min_cpu = 15
+    max_ram = 2000
+    min_ram = 1000
+
+    max_rmse = 5.14
+    min_rmse = 0.19
+    max_r2 = 1
+    min_r2 = 0.98
+
+    gpu_usage = 1100
+    cpu_usage = 18
+
+    cost = 5000
+
+    rmspeci = cost * rmspe
+
+    brmseti = (weight_performance * (1-((rmse - min_rmse) / (max_rmse - min_rmse)))) \
+            + (weight_external * (1 - ((training_time - min_time) / (max_time - min_time))))
+
+    rars_cpu = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((cpu_usage-min_cpu)/(max_cpu-min_cpu)))))
+    rars_gpu = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
+    rars_ram = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
+
+    output = reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2)
+    return output
