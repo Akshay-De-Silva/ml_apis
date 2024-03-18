@@ -7,7 +7,7 @@ import timeit
 import psutil
 import json
 
-def reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2):
+def reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2, ram_usage, training_time):
     output = {
         "BATI": 0,
         "RAF1_CPU" : 0,
@@ -26,11 +26,13 @@ def reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, 
         "MSE" : round(mse,2),
         "RSME" : round(rmse,2),
         "MAE" : round(mae,2),
-        "R2" : round(r2,2)
+        "R2" : round(r2,2),
+        "ram": ram_usage,
+        "training_time": training_time
     }
     return json.dumps(output, indent=4)
 
-def class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall):
+def class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall, ram_usage, training_time):
     output = {
         "BATI": round(bati,2),
         "RAF1_CPU" : round(raf1_cpu,2),
@@ -49,7 +51,9 @@ def class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, p
         "MSE" : 0,
         "RSME" : 0,
         "MAE" : 0,
-        "R2" : 0
+        "R2" : 0,
+        "ram": ram_usage,
+        "training_time": training_time
     }
     return json.dumps(output, indent=4)
 
@@ -134,7 +138,7 @@ def getLogReg(weight_external, weight_performance):
     raf1_gpu = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
     raf1_ram = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
 
-    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall)
+    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall, ram_usage, training_time)
     return output
 
 def getLinReg(weight_external, weight_performance):
@@ -202,7 +206,7 @@ def getLinReg(weight_external, weight_performance):
     rars_gpu = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
     rars_ram = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
 
-    output = reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2)
+    output = reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2, ram_usage, training_time)
     return output
 
 def getKnn(weight_external, weight_performance):
@@ -280,7 +284,7 @@ def getKnn(weight_external, weight_performance):
     raf1_gpu = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
     raf1_ram = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
 
-    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall)
+    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall, ram_usage, training_time)
     return output
 
 def getDt(weight_external, weight_performance):
@@ -358,7 +362,7 @@ def getDt(weight_external, weight_performance):
     raf1_gpu = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
     raf1_ram = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
 
-    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall)
+    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall, ram_usage, training_time)
     return output
 
 def getRf(weight_external, weight_performance):
@@ -436,7 +440,7 @@ def getRf(weight_external, weight_performance):
     raf1_gpu = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
     raf1_ram = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
 
-    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall)
+    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall, ram_usage, training_time)
     return output
 
 def getNb(weight_external, weight_performance):
@@ -514,7 +518,7 @@ def getNb(weight_external, weight_performance):
     raf1_gpu = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
     raf1_ram = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
 
-    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall)
+    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall, ram_usage, training_time)
     return output
 
 def getSvm(weight_external, weight_performance):
@@ -592,7 +596,7 @@ def getSvm(weight_external, weight_performance):
     raf1_gpu = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
     raf1_ram = (weight_performance * ((f1Score-min_f1)/(max_f1-min_f1)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
 
-    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall)
+    output = class_to_json(f1ci, bati, raf1_cpu, raf1_gpu, raf1_ram, accuracy, f1Score, precision, recall, ram_usage, training_time)
     return output
 
 def getRr(weight_external, weight_performance):
@@ -660,7 +664,7 @@ def getRr(weight_external, weight_performance):
     rars_gpu = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
     rars_ram = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
 
-    output = reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2)
+    output = reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2, ram_usage, training_time)
     return output
 
 def getLasso(weight_external, weight_performance):
@@ -728,7 +732,7 @@ def getLasso(weight_external, weight_performance):
     rars_gpu = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
     rars_ram = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
 
-    output = reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2)
+    output = reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2, ram_usage, training_time)
     return output
 
 def getBrr(weight_external, weight_performance):
@@ -796,7 +800,7 @@ def getBrr(weight_external, weight_performance):
     rars_gpu = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
     rars_ram = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
 
-    output = reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2)
+    output = reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2, ram_usage, training_time)
     return output
 
 def getEn(weight_external, weight_performance):
@@ -864,5 +868,5 @@ def getEn(weight_external, weight_performance):
     rars_gpu = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((gpu_usage-min_gpu)/(max_gpu-min_gpu)))))
     rars_ram = (weight_performance * ((r2-min_r2)/(max_r2-min_r2)) + (weight_external * (1-((ram_usage-min_ram)/(max_ram-min_ram)))))
 
-    output = reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2)
+    output = reg_to_json(rmspeci, brmseti, rars_cpu, rars_gpu, rars_ram, mse, rmse, mae, r2, ram_usage, training_time)
     return output
