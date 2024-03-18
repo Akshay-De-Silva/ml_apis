@@ -101,7 +101,7 @@ def getLogReg(weight_external, weight_performance):
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
 
-    max_time = 3
+    max_time = 1
     min_time = 0.005
     max_gpu = 2000
     min_gpu = 1000
@@ -110,10 +110,10 @@ def getLogReg(weight_external, weight_performance):
     max_ram = 2000
     min_ram = 1000
 
-    max_acc = 0.97
-    min_acc = 0.75
-    max_f1 =0.95
-    min_f1 = 0.7
+    max_acc = 0.9
+    min_acc = 0.81
+    max_f1 =0.91
+    min_f1 = 0.82
 
     gpu_usage = 1100
     cpu_usage = 18
@@ -183,8 +183,8 @@ def getLinReg(weight_external, weight_performance):
     max_ram = 2000
     min_ram = 1000
 
-    max_rmse = 5.14
-    min_rmse = 0.19
+    max_rmse = 5.15
+    min_rmse = 0.18
     max_r2 = 1
     min_r2 = 0.98
 
@@ -247,7 +247,7 @@ def getKnn(weight_external, weight_performance):
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
 
-    max_time = 3
+    max_time = 1
     min_time = 0.005
     max_gpu = 2000
     min_gpu = 1000
@@ -256,10 +256,10 @@ def getKnn(weight_external, weight_performance):
     max_ram = 2000
     min_ram = 1000
 
-    max_acc = 0.97
-    min_acc = 0.75
-    max_f1 =0.95
-    min_f1 = 0.7
+    max_acc = 0.9
+    min_acc = 0.81
+    max_f1 =0.91
+    min_f1 = 0.82
 
     gpu_usage = 1100
     cpu_usage = 18
@@ -325,7 +325,7 @@ def getDt(weight_external, weight_performance):
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
 
-    max_time = 3
+    max_time = 1
     min_time = 0.005
     max_gpu = 2000
     min_gpu = 1000
@@ -334,10 +334,10 @@ def getDt(weight_external, weight_performance):
     max_ram = 2000
     min_ram = 1000
 
-    max_acc = 0.97
-    min_acc = 0.75
-    max_f1 =0.95
-    min_f1 = 0.7
+    max_acc = 0.9
+    min_acc = 0.81
+    max_f1 =0.91
+    min_f1 = 0.82
 
     gpu_usage = 1100
     cpu_usage = 18
@@ -403,7 +403,7 @@ def getRf(weight_external, weight_performance):
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
 
-    max_time = 3
+    max_time = 1
     min_time = 0.005
     max_gpu = 2000
     min_gpu = 1000
@@ -412,10 +412,10 @@ def getRf(weight_external, weight_performance):
     max_ram = 2000
     min_ram = 1000
 
-    max_acc = 0.97
-    min_acc = 0.75
-    max_f1 =0.95
-    min_f1 = 0.7
+    max_acc = 0.9
+    min_acc = 0.81
+    max_f1 =0.91
+    min_f1 = 0.82
 
     gpu_usage = 1100
     cpu_usage = 18
@@ -481,7 +481,7 @@ def getNb(weight_external, weight_performance):
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
 
-    max_time = 3
+    max_time = 1
     min_time = 0.005
     max_gpu = 2000
     min_gpu = 1000
@@ -490,10 +490,10 @@ def getNb(weight_external, weight_performance):
     max_ram = 2000
     min_ram = 1000
 
-    max_acc = 0.97
-    min_acc = 0.75
-    max_f1 =0.95
-    min_f1 = 0.7
+    max_acc = 0.9
+    min_acc = 0.81
+    max_f1 =0.91
+    min_f1 = 0.82
 
     gpu_usage = 1100
     cpu_usage = 18
@@ -559,7 +559,7 @@ def getSvm(weight_external, weight_performance):
     precision = precision_score(y_test, y_pred)
     recall = recall_score(y_test, y_pred)
 
-    max_time = 3
+    max_time = 1
     min_time = 0.005
     max_gpu = 2000
     min_gpu = 1000
@@ -568,10 +568,10 @@ def getSvm(weight_external, weight_performance):
     max_ram = 2000
     min_ram = 1000
 
-    max_acc = 0.97
-    min_acc = 0.75
-    max_f1 =0.95
-    min_f1 = 0.7
+    max_acc = 0.9
+    min_acc = 0.81
+    max_f1 =0.91
+    min_f1 = 0.82
 
     gpu_usage = 1100
     cpu_usage = 18
@@ -641,8 +641,8 @@ def getRr(weight_external, weight_performance):
     max_ram = 2000
     min_ram = 1000
 
-    max_rmse = 5.14
-    min_rmse = 0.19
+    max_rmse = 5.15
+    min_rmse = 0.18
     max_r2 = 1
     min_r2 = 0.98
 
@@ -709,8 +709,8 @@ def getLasso(weight_external, weight_performance):
     max_ram = 2000
     min_ram = 1000
 
-    max_rmse = 5.14
-    min_rmse = 0.19
+    max_rmse = 5.15
+    min_rmse = 0.18
     max_r2 = 1
     min_r2 = 0.98
 
@@ -777,8 +777,8 @@ def getBrr(weight_external, weight_performance):
     max_ram = 2000
     min_ram = 1000
 
-    max_rmse = 5.14
-    min_rmse = 0.19
+    max_rmse = 5.15
+    min_rmse = 0.18
     max_r2 = 1
     min_r2 = 0.98
 
@@ -845,8 +845,8 @@ def getEn(weight_external, weight_performance):
     max_ram = 2000
     min_ram = 1000
 
-    max_rmse = 5.14
-    min_rmse = 0.19
+    max_rmse = 5.15
+    min_rmse = 0.18
     max_r2 = 1
     min_r2 = 0.98
 
