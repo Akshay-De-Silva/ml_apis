@@ -174,7 +174,7 @@ def getLinReg(weight_external, weight_performance):
     rmse = np.sqrt(mse)
     rmspe = rmspeFucntion(rmse, y_test)
 
-    max_time = 0.4
+    max_time = 0.45
     min_time = 0.009
     max_gpu = 2000
     min_gpu = 1000
@@ -632,7 +632,7 @@ def getRr(weight_external, weight_performance):
     rmse = np.sqrt(mse)
     rmspe = rmspeFucntion(rmse, y_test)
 
-    max_time = 0.4
+    max_time = 0.45
     min_time = 0.009
     max_gpu = 2000
     min_gpu = 1000
@@ -700,7 +700,7 @@ def getLasso(weight_external, weight_performance):
     rmse = np.sqrt(mse)
     rmspe = rmspeFucntion(rmse, y_test)
 
-    max_time = 0.4
+    max_time = 0.45
     min_time = 0.009
     max_gpu = 2000
     min_gpu = 1000
@@ -768,7 +768,7 @@ def getBrr(weight_external, weight_performance):
     rmse = np.sqrt(mse)
     rmspe = rmspeFucntion(rmse, y_test)
 
-    max_time = 0.4
+    max_time = 0.45
     min_time = 0.009
     max_gpu = 2000
     min_gpu = 1000
@@ -836,7 +836,7 @@ def getEn(weight_external, weight_performance):
     rmse = np.sqrt(mse)
     rmspe = rmspeFucntion(rmse, y_test)
 
-    max_time = 0.4
+    max_time = 0.45
     min_time = 0.009
     max_gpu = 2000
     min_gpu = 1000
